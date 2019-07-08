@@ -1,0 +1,326 @@
+<html>
+
+<head>
+    <title>islands</title>
+
+    <!--JS-->
+
+    <!-- external general utilities -->
+    <script src="../_shared/js/jquery-1.11.1.min.js "></script>
+    <script src="../_shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../_shared/js/underscore-min.js"></script>
+    <!-- if you want to draw stuff: -->
+    <script src="../_shared/js/raphael-min.js"></script>
+
+    <!-- cocolab experiment logic -->
+    <script src="../_shared/js/exp-V2.js"></script>
+    <script src="../_shared/js/stream-V2.js"></script>
+
+    <!-- cocolab general utilities -->
+    <script src="../_shared/js/mmturkey.js "></script>
+    <script src="../_shared/js/browserCheck.js"></script>
+    <script src="../_shared/js/utils.js"></script>
+    <!-- if you want to draw cute creatures (depends on raphael): -->
+    <!-- <script src="../_shared/js/ecosystem.js"></script> -->
+
+    <!-- experiment specific helper functions -->
+    <!-- <script src="js/local-utils.js"></script> -->
+
+    <!--CSS-->
+    <link href="../_shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/cocolab-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- experiment file -->
+    <script src="js/experiment-code.js"></script>
+    <!--<script src="expt-files/corpus.js"></script> -->
+    <script src="expt-files/islandstimuli.js"></script>
+    <!--<script src="expt-files/names.js"></script> -->
+
+    <!-- check unique turkers 
+    <script src="../_shared/js/uniqueturker.js"></script> -->
+    
+</head>
+
+<body onload="init();">
+  <noscript>This task requires JavaScript.</noscript>
+
+  <div class="slide" id="i0" >
+      <p>   </p>
+    <img src="../_shared/images/CoLaLabLogo.jpg" alt="UCI CoLaLab" height = "200" id="cocologo"></img>
+    <p id="colalab">UCI CoLaLab</p>
+    <p id="instruct-text">This is an experiment about English
+      sentences. The HIT will take about 5 - 8 minutes to complete. Please pay attention. Thanks!</p>
+    <button id="start_button" type="button">Start Experiment</button>
+    <p id="legal">Legal information: All data collected will be stored securely and confidentially on a password-protected server.  <br />
+The team will not have access to or be gathering any information that personally identifies you.  <br />
+If you have any comments, concerns, or questions regarding the conduct
+      of this research please contact Alandi Bates (ajbates@uci.edu) or Lisa Pearl (lpearl@uci.edu).  <br />
+Please contact UCI's Office of Research by phone, (949) 824-6662, by e-mail at IRB@research.uci.edu, or at 141 Innovation Drive, Suite 150250, Irvine, CA 92617 if you are unable to reach the researchers listed above and have general questions; have concerns or complaints about the research; have questions about your rights as a research subject; or have general comments or suggestions.  <br />
+Participation in this study is voluntary. There is no cost to you for participating. You may refuse to participate or discontinue your involvement at any time. You are free to withdraw from this study at any time. </p>
+  </div>
+
+  <div class="slide" id="instructions1">
+    <h3>Instructions</h3>
+    <p> In this experiment you will read English sentences, and
+    determine if they sound grammatical to you. By grammatical, we
+    mean whether you think a native speaker of English could say this
+    sentence in a conversation. In other words, do you think it would
+    sound odd for your friends to say this to you, as if they
+    don&rsquo;t speak English natively? We are <u>not</u> concerned
+    with whether the sentence would be graded highly by a writing
+    teacher: we do not care about points of style or clarity, and we
+    do not care about the grammar rules that you learned in school
+    (who versus whom, ending a sentence with a preposition,
+    etc). Instead, we are interested in whether these sentences could
+    be said by a native speaker of English in normal daily speech.</p>
+    <button onclick="_s.button()">Continue</button>
+    </div>
+
+
+  <div class="slide" id="examplesentences">
+    <h3>Example sentences</h3>
+
+    <p>You will rate the sentence on a scale from 1 (very bad) to 7 (very good). Here are three examples: one that is very bad, one that is in middle of the scale, and one that is very good. You do&nbsp;<u>not</u> need to change these ratings. They are just examples for you.</p>
+
+<table width="100%">
+	<tbody>
+		<tr>
+			<td width="600">The was insulted waitress frequently.</td>
+			<td align="center">
+			<table align="center">
+				<tbody>
+					<tr>
+						<td align="center">very bad</td>
+						<td align="center">1</td>
+						<td align="center">2</td>
+						<td align="center">3</td>
+						<td align="center">4</td>
+						<td align="center">5</td>
+						<td align="center">6</td>
+						<td align="center">7</td>
+						<td align="center">very good</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><input checked="checked" id="A1" name="A1" type="radio" value="1" /></td>
+						<td><input id="A1" name="A1" type="radio" value="2" /></td>
+						<td><input id="A1" name="A1" type="radio" value="3" /></td>
+						<td><input id="A1" name="A1" type="radio" value="4" /></td>
+						<td><input id="A1" name="A1" type="radio" value="5" /></td>
+						<td><input id="A1" name="A1" type="radio" value="6" /></td>
+						<td><input id="A1" name="A1" type="radio" value="7" /></td>
+						<td>&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="600">Tanya danced with as handsome a boy as her father.</td>
+			<td align="center">
+			<table align="center">
+				<tbody>
+					<tr>
+						<td align="center">very bad</td>
+						<td align="center">1</td>
+						<td align="center">2</td>
+						<td align="center">3</td>
+						<td align="center">4</td>
+						<td align="center">5</td>
+						<td align="center">6</td>
+						<td align="center">7</td>
+						<td align="center">very good</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><input id="A2" name="A2" type="radio" value="1" /></td>
+						<td><input id="A2" name="A2" type="radio" value="2" /></td>
+						<td><input id="A2" name="A2" type="radio" value="3" /></td>
+						<td><input checked="checked" id="A2" name="A2" type="radio" value="4" /></td>
+						<td><input id="A2" name="A2" type="radio" value="5" /></td>
+						<td><input id="A2" name="A2" type="radio" value="6" /></td>
+						<td><input id="A2" name="A2" type="radio" value="7" /></td>
+						<td>&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="600">This is a pen.</td>
+			<td align="center">
+			<table align="center">
+				<tbody>
+					<tr>
+						<td align="center">very bad</td>
+						<td align="center">1</td>
+						<td align="center">2</td>
+						<td align="center">3</td>
+						<td align="center">4</td>
+						<td align="center">5</td>
+						<td align="center">6</td>
+						<td align="center">7</td>
+						<td align="center">very good</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><input id="A3" name="A3" type="radio" value="1" /></td>
+						<td><input id="A3" name="A3" type="radio" value="2" /></td>
+						<td><input id="A3" name="A3" type="radio" value="3" /></td>
+						<td><input id="A3" name="A3" type="radio" value="4" /></td>
+						<td><input id="A3" name="A3" type="radio" value="5" /></td>
+						<td><input id="A3" name="A3" type="radio" value="6" /></td>
+						<td><input checked="checked" id="A3" name="A3" type="radio" value="7" /></td>
+						<td>&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+<p>OK. Now you are ready to rate the rest on your own. &nbsp; There are 31 sentences for you to judge. You must rate all of them in order to be paid for the HIT.</p>
+    <!-- <p class="instruction_condition">{{}}</p> -->
+    <button onclick="_s.button()">Continue</button>
+  </div>
+
+  <div class="slide" id="multi_slider">
+
+  <p class="name_said"></p>
+    <h3>Sentences for you to judge</h3>
+
+
+    
+
+    <p>How grammatical is the following sentence on a scale from 1
+    (very bad) to 7 (very good)?</p>
+    <br></br>
+
+    <H3><span class="order">{{}}</span></H3>
+
+ <table width="100%">
+	<tbody>
+		<tr>
+			<!--<td width="600">How grammatical is "<span
+    class="order">{{}}</span>"  on a scale from 1 (very bad) to 7
+    (very good)?</td> -->
+			<td align="center">
+		</tr>
+		      
+			<table align="center">
+				<tbody>
+					<tr><div id="slider0" class="slider"></div>
+						<td align="center">very bad</td>
+						<td align="center">1</td>
+						<td align="center">2</td>
+						<td align="center">3</td>
+						<td align="center">4</td>
+						<td align="center">5</td>
+						<td align="center">6</td>
+						<td align="center">7</td>
+						<td align="center">very good</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><input name="response" type="radio" value="1" /></td>
+						<td><input name="response" type="radio" value="2" /></td>
+						<td><input name="response" type="radio" value="3" /></td>
+						<td><input name="response" type="radio" value="4" /></td>
+						<td><input name="response" type="radio" value="5" /></td>
+						<td><input name="response" type="radio" value="6" /></td>
+						<td><input name="response" type="radio" value="7" /></td>
+						<td>&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+	</tbody>
+</table>
+    
+
+
+    <button onclick="_s.button()">Continue</button>
+    <div class="err">Please rate the sentence before continuing.</div>
+  </div>
+
+  <div class="slide"  id="subj_info">
+    <div class="long_form">
+      <div class="subj_info_title">Additional information</div>
+      <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
+      <p>Did you read the instructions and do you think you did the HIT correctly?</p>
+      <label><input type="radio"  name="assess" value="No"/>No</label>
+      <label><input type="radio"  name="assess" value="Yes"/>Yes</label>
+      <label><input type="radio"  name="assess" value="Confused"/>I was confused</label>
+
+      <p>Gender:
+        <select id="gender">
+          <label><option value=""/></label>
+          <label><option value="Male"/>Male</label>
+          <label><option value="Female"/>Female</label>
+          <label><option value="Other"/>Other</label>
+        </select>
+      </p>
+
+      <p>Age: <input type="text" id="age"/></p>
+
+      <p>Level Of Education:
+        <select id="education">
+          <label><option value="-1"/></label>
+          <label><option value="0"/>Some High School</label>
+          <label><option value="1"/>Graduated High School</label>
+          <label><option value="2"/>Some College</label>
+          <label><option value="3"/>Graduated College</label>
+          <label><option value="4"/>Hold a higher degree</label>
+        </select>
+      </p>
+
+      <p>Native Language(s): <input type="text" id="language"/></p>
+      <label>(the language(s) spoken at home when you were a child)</label>
+
+      <p>Did you enjoy the hit?</p>
+      <select id="enjoyment">
+        <label><option value="-1"></option></label>
+        <label><option value="0">Worse than the Average HIT</option></label>
+        <label><option value="1" >An Average HIT</option></label>
+        <label><option value="2">Better than average HIT</option></label>
+      </select>
+
+      <p>We would be interested in any comments you have about this experiment. Please type them here:</p>
+      <textarea id="comments" rows="3" cols="50"></textarea>
+      <br/>
+      <button onclick="_s.submit()">Submit</button>
+    </div>
+  </div>
+
+  <div id="thanks" class="slide js" >
+    <p  class="big">Thanks for your time!</p>
+  </div>
+
+  <div class="progress">
+    <span>Progress:</span>
+    <div class="bar-wrapper">
+      <div class="bar" width="0%">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
